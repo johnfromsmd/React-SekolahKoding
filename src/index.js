@@ -10,6 +10,15 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
+const names = "John";
+
+function greet(){
+  return "Halo guys " + names
+}
+
+const element = <h1>{greet(names)}</h1>
+
+ReactDOM.render(element, document.getElementById('master'));
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
