@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import List from './List';
 
 
  class App extends Component{
@@ -15,6 +16,10 @@ import './App.css';
 
    handleSubmit = (event) => {
      event.preventDefault();
+     this.setState({
+       items: [...this.state.items, this.state.todoItem],
+       todoItem: ''
+     })
      console.log('terpanggil')
    }
 
@@ -33,6 +38,7 @@ import './App.css';
         <input value={this.state.todoItem} onChange={this.handleChange}/>
         <button>Add</button>
       </form>
+      <List items={this.state.items} />
     </div>
   );
  }
