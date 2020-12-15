@@ -1,10 +1,7 @@
 import { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import List from './List';
-
-
- class App extends Component{
+import List from './List'; class App extends Component{
   constructor(props) {
     super(props)
     this.state = {
