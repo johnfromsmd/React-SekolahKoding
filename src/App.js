@@ -1,41 +1,35 @@
 import { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import List from './List'; class App extends Component{
-  constructor(props) {
-    super(props)
-    this.state = {
-      todoItem: '',
-      items:[]
-    }
-  }
 
-
-   handleSubmit = (event) => {
-     event.preventDefault();
-     this.setState({
-       items: [...this.state.items, this.state.todoItem],
-       todoItem: ''
-     })
-     console.log('terpanggil')
+ class App extends Component{
+   constructor(props){
+     super(props)
+     this.state = {
+       items: [],
+       isLoading: true
+     }
    }
 
-   handleChange = (event) => {
-     this.setState({
-       todoItem: event.target.value
-     })
-     console.log(this.state.todoItem)
+   componentDidMount(){
+     fetch('https://jsonplaceholder.typicode.com/users')
+      .then(response => response.json())
+      .then(data => this.setState({ items: data, isLoading:false}))
    }
 
   render(){
-  return (
+    const { items, isLoading } = this.state
     
+    if(isLoading){
+      return <p>Loading h</p>
+    }
+  
+    return (    
     <div>
-      <form onSubmit={this.handleSubmit}>
-        <input value={this.state.todoItem} onChange={this.handleChange}/>
-        <button>Add</button>
-      </form>
-      <List items={this.state.items} />
+      <ul>
+        { items.map((item, index) => 
+        <li key={index}>{item.name}</li>)}
+      </ul>
     </div>
   );
  }
